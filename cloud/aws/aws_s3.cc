@@ -469,6 +469,7 @@ Status S3StorageProvider::PrepareOptions(const ConfigOptions& options) {
   Aws::Client::ClientConfiguration config;
   Status status = AwsCloudOptions::GetClientConfiguration(
       cfs, cloud_opts.src_bucket.GetRegion(), &config);
+	config.endpointOverride = "http://127.0.0.1:9000";
   if (status.ok()) {
     std::shared_ptr<Aws::Auth::AWSCredentialsProvider> creds;
     status = cloud_opts.credentials.GetCredentialsProvider(&creds);
